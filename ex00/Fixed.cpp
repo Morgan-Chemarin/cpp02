@@ -8,16 +8,17 @@ Fixed::Fixed(): _value(0)
 }
 
 // copy constructor
-Fixed::Fixed(const Fixed &other): _value(other._value) // liste d'initialisation ou operator= ?
+Fixed::Fixed(const Fixed &other)
 {
 	std::cout << "Copy constructor called" << std::endl;
+	*this = other; // ou liste d'initialisation ?
 }
 
 // copy assignement operator overload
 Fixed &Fixed::operator=(const Fixed &other)
 {
 	if (this != &other)
-		_value = other.getRawBits(); // ou other._value ?
+		this->_value = other.getRawBits(); // ou other._value ?
 
 	std::cout << "Copy assignment operator called" << std::endl;
 
