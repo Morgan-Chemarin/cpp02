@@ -6,7 +6,7 @@
 /*   By: dev <dev@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 18:45:29 by dev               #+#    #+#             */
-/*   Updated: 2026/02/19 18:45:30 by dev              ###   ########.fr       */
+/*   Updated: 2026/02/20 14:12:23 by dev              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 class Fixed {
 private:
-	int	_value;
+	int	_fixedPointValue;
 	static const int _fractionalBits = 8;
 
 public:
@@ -23,10 +23,10 @@ public:
 	Fixed();
 
 	// copy constructor
-	Fixed(const Fixed &other);
+	Fixed(const Fixed& other);
 
 	// copy assignement operator overload
-	Fixed &operator=(const Fixed &other);
+	Fixed& operator=(const Fixed& other);
 
 	// destructor
 	~Fixed();

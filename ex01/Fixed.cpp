@@ -6,7 +6,7 @@
 /*   By: dev <dev@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 18:45:36 by dev               #+#    #+#             */
-/*   Updated: 2026/02/19 18:45:37 by dev              ###   ########.fr       */
+/*   Updated: 2026/02/20 14:25:45 by dev              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <iostream>
 #include <cmath>
 
-Fixed::Fixed(): _fixed_point_value(0)
+Fixed::Fixed(): _fixedPointValue(0)
 {
 	std::cout << "Default constructor called" << std::endl;
 }
@@ -22,25 +22,25 @@ Fixed::Fixed(): _fixed_point_value(0)
 Fixed::Fixed(const int n)
 {
 	std::cout << "Int constructor called" << std::endl;
-	this->_fixed_point_value = n << this->_fractionalBits;
+	this->_fixedPointValue = n << this->_fractionalBits;
 }
 
 Fixed::Fixed(const float f)
 {
 	std::cout << "Float constructor called" << std::endl;
-	this->_fixed_point_value = static_cast<float>(roundf(f * (1 << this->_fractionalBits)));
+	this->_fixedPointValue = static_cast<int>(roundf(f * (1 << this->_fractionalBits)));
 }
 
-Fixed::Fixed(const Fixed &other)
+Fixed::Fixed(const Fixed& other)
 {
 	std::cout << "Copy constructor called" << std::endl;
 	*this = other;
 }
 
-Fixed &Fixed::operator=(const Fixed &other)
+Fixed& Fixed::operator=(const Fixed& other)
 {
 	if (this != &other)
-		this->_fixed_point_value = other.getRawBits();
+		this->_fixedPointValue = other.getRawBits();
 
 	std::cout << "Copy assignment operator called" << std::endl;
 
@@ -55,26 +55,26 @@ Fixed::~Fixed()
 int Fixed::getRawBits( void ) const
 {
 	std::cout << "getRawBits member function called" << std::endl;
-	return this->_fixed_point_value;
+	return this->_fixedPointValue;
 }
 
 void Fixed::setRawBits( int const raw)
 {
 	std::cout << "setRawBits member function called" << std::endl;
-	this->_fixed_point_value = raw;
+	this->_fixedPointValue = raw;
 }
 
 float Fixed::toFloat(void) const
 {
-	return (_fixed_point_value / static_cast<float>((1 << (_fractionalBits))));
+	return (_fixedPointValue / static_cast<float>((1 << (_fractionalBits))));
 }
 
 int Fixed::toInt(void) const
 {
-	return (this->_fixed_point_value >> _fractionalBits);
+	return (this->_fixedPointValue >> _fractionalBits);
 }
 
-std::ostream &operator<<(std::ostream &o, const Fixed &fix)
+std::ostream& operator<<(std::ostream& o, const Fixed& fix)
 {
     o << fix.toFloat();
     return (o);
